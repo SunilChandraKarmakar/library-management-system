@@ -10,3 +10,4 @@ D:\library-management-system\Library Management System API\LibraryManagementSyst
 D:\library-management-system\Library Management System API\LibraryManagementSystem\LibraryManagementSystem.Domain\obj\Debug\net8.0\refint\LibraryManagementSystem.Domain.dll
 D:\library-management-system\Library Management System API\LibraryManagementSystem\LibraryManagementSystem.Domain\obj\Debug\net8.0\LibraryManagementSystem.Domain.pdb
 D:\library-management-system\Library Management System API\LibraryManagementSystem\LibraryManagementSystem.Domain\obj\Debug\net8.0\ref\LibraryManagementSystem.Domain.dll
+D:\library-management-system\Library Management System API\LibraryManagementSystem\LibraryManagementSystem.Domain\obj\Debug\net8.0\LibraryManagementSystem.Domain.csproj.AssemblyReference.cache
