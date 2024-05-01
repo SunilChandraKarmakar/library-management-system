@@ -1,5 +1,9 @@
 using LibraryManagementSystem.DbMigration.DatabaseContext;
 using LibraryManagementSystem.Domain.Models;
+using LibraryManagementSystem.Manager;
+using LibraryManagementSystem.Manager.Contract;
+using LibraryManagementSystem.Repository;
+using LibraryManagementSystem.Repository.Contract;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +20,7 @@ builder.Services.AddDbContext<LibraryManagementSystemDbContext>(option =>
 });
 builder.Services.AddIdentity<Member, IdentityRole>(option => { }).AddEntityFrameworkStores<LibraryManagementSystemDbContext>();
 
-//// Add JWT
+// Add JWT
 builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JWTConfig"));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(option =>
 {
@@ -24,7 +28,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     string isSuer = builder.Configuration["JWTConfig:Issuer"];
     string audience = builder.Configuration["JWTConfig:Audience"];
 
-    option.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+    option.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(key),
@@ -56,6 +60,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Dependency Injection
+builder.Services.AddTransient<IAuthorManager, AuthorManager>();
+builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
+builder.Services.AddTransient<IBookManager, BookManager>();
+builder.Services.AddTransient<IBookRepository, BookRepository>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -65,13 +75,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseSwagger();
+
+app.UseSwaggerUI();
+
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-
 app.UseAuthorization();
-
-app.UseCors("AllowOrigin");
 
 app.MapControllers();
 

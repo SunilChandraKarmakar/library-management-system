@@ -12,7 +12,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagementSystem.Api", "LibraryManagementSystem.Api\LibraryManagementSystem.Api.csproj", "{B4386B72-897E-435E-94B9-5647D63FA836}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagementSystem.DbMigration", "LibraryManagementSystem.DbMigration\LibraryManagementSystem.DbMigration.csproj", "{8E724FF7-5522-4E60-B38E-92DCB878B7E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManagementSystem.DbMigration", "LibraryManagementSystem.DbMigration\LibraryManagementSystem.DbMigration.csproj", "{8E724FF7-5522-4E60-B38E-92DCB878B7E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagementSystem.Repository", "LibraryManagementSystem.Repository\LibraryManagementSystem.Repository.csproj", "{4A0657C1-A3B2-4000-ABAE-2C78A548EF90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManagementSystem.Manager", "LibraryManagementSystem.Manager\LibraryManagementSystem.Manager.csproj", "{432776F3-8C2C-4B87-80B2-471761C116F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +36,14 @@ Global
 		{8E724FF7-5522-4E60-B38E-92DCB878B7E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8E724FF7-5522-4E60-B38E-92DCB878B7E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8E724FF7-5522-4E60-B38E-92DCB878B7E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A0657C1-A3B2-4000-ABAE-2C78A548EF90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A0657C1-A3B2-4000-ABAE-2C78A548EF90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A0657C1-A3B2-4000-ABAE-2C78A548EF90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A0657C1-A3B2-4000-ABAE-2C78A548EF90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{432776F3-8C2C-4B87-80B2-471761C116F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{432776F3-8C2C-4B87-80B2-471761C116F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{432776F3-8C2C-4B87-80B2-471761C116F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{432776F3-8C2C-4B87-80B2-471761C116F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
