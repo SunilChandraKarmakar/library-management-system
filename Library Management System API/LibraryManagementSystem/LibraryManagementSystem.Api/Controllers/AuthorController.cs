@@ -12,19 +12,19 @@ namespace LibraryManagementSystem.Api.Controllers
     public class AuthorController : ControllerBase
     {
         private readonly IAuthorManager _authorManager;
-        private readonly IMapper _iMapper;
+        private readonly IMapper _mapper;
 
-        public AuthorController(IAuthorManager authorManager, IMapper iMapper)
+        public AuthorController(IAuthorManager authorManager, IMapper mapper)
         {
             _authorManager = authorManager;
-            _iMapper = iMapper;
+            _mapper = mapper;
         }
         
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<AuthorViewModel>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<AuthorViewModel>>> GetAll()
         {
-            var getAuthors = _iMapper.Map<ICollection<AuthorViewModel>>(await _authorManager.GetAll());
+            var getAuthors = _mapper.Map<IEnumerable<AuthorViewModel>>(await _authorManager.GetAll());
             return Ok(getAuthors);
         }
 
@@ -32,12 +32,12 @@ namespace LibraryManagementSystem.Api.Controllers
         [ProducesResponseType(typeof(AuthorViewModel), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<AuthorViewModel>> GetById(int? id)
         {
-            if (id == null)
+            if (id is null)
                 return NotFound(new { ErrorMessage = "Author id was not found! Try Again." });
 
-            var getAuthorById = _iMapper.Map<AuthorViewModel>(await _authorManager.GetById(id));
+            var getAuthorById = _mapper.Map<AuthorViewModel>(await _authorManager.GetById(id));
 
-            if (getAuthorById == null)
+            if (getAuthorById is null)
                 return NotFound(new { ErrorMessage = "Author was not found! Try again." });
 
             return Ok(getAuthorById);
@@ -45,13 +45,13 @@ namespace LibraryManagementSystem.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(AuthorCreateModel), (int)HttpStatusCode.Created)]
-        public async Task<ActionResult<AuthorCreateModel>> Post([FromBody] AuthorCreateModel authorCreateModel)
+        public async Task<ActionResult<AuthorCreateModel>> Create([FromBody] AuthorCreateModel authorCreateModel)
         {
             if (ModelState.IsValid)
             {
-                var author = _iMapper.Map<Author>(authorCreateModel);
+                var author = _mapper.Map<Author>(authorCreateModel);
                 var isSave = await _authorManager.Create(author);
-                _iMapper.Map(author, authorCreateModel);
+                _mapper.Map(author, authorCreateModel);
 
                 if (isSave)
                     return Ok(authorCreateModel);
@@ -62,7 +62,7 @@ namespace LibraryManagementSystem.Api.Controllers
 
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(AuthorEditModel), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<AuthorEditModel>> Put(int? id, AuthorEditModel authorEditModel)
+        public async Task<ActionResult<AuthorEditModel>> Update(int? id, AuthorEditModel authorEditModel)
         {
             if (id is null || id != authorEditModel.Id)
                 return NotFound(new { ErrorMessage = "Author id was not found! Try again." });
@@ -71,9 +71,9 @@ namespace LibraryManagementSystem.Api.Controllers
 
             if (ModelState.IsValid)
             {
-                _iMapper.Map(authorEditModel, existingAuthor);
+                _mapper.Map(authorEditModel, existingAuthor);
                 var isUpdate = await _authorManager.Update(existingAuthor);
-                _iMapper.Map(existingAuthor, authorEditModel);
+                _mapper.Map(existingAuthor, authorEditModel);
 
                 if (isUpdate)
                     return Ok(authorEditModel);

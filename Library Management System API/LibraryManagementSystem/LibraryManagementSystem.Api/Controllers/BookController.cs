@@ -24,7 +24,7 @@ namespace LibraryManagementSystem.Api.Controllers
         [ProducesResponseType(typeof(IEnumerable<BookViewModel>), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<IEnumerable<BookViewModel>>> GetAll()
         {
-            var getBooks = _iMapper.Map<ICollection<BookViewModel>>(await _bookManager.GetAll());
+            var getBooks = _iMapper.Map<IEnumerable<BookViewModel>>(await _bookManager.GetAll());
             return Ok(getBooks);
         }
 
@@ -45,7 +45,7 @@ namespace LibraryManagementSystem.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(BookCreateModel), (int)HttpStatusCode.Created)]
-        public async Task<ActionResult<BookCreateModel>> Post([FromBody] BookCreateModel bookCreateModel)
+        public async Task<ActionResult<BookCreateModel>> Create([FromBody] BookCreateModel bookCreateModel)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace LibraryManagementSystem.Api.Controllers
 
         [HttpPut("{id}")]
         [ProducesResponseType(typeof(BookEditModel), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<BookEditModel>> Put(int? id, BookEditModel bookEditModel)
+        public async Task<ActionResult<BookEditModel>> Update(int? id, BookEditModel bookEditModel)
         {
             if (id is null || id != bookEditModel.Id)
                 return NotFound(new { ErrorMessage = "Book id was not found! Try again." });
