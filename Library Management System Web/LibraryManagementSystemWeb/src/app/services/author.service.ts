@@ -11,7 +11,7 @@ import { AuthorEditModel } from '../models/author/author-edit-model';
 })
 
 export class AuthorService {
-  private appBaseUrl: string = "https://localhost:7090/";
+  private appBaseUrl: string = "https://localhost:7090/api/";
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<AuthorViewModel[]> {

@@ -9,6 +9,7 @@
         public string PhoneNumber { get; set; }
         public DateTime RegistrationDate { get; set; }
         public string MemberTypeName { get; set; }
+        public int MemberTypeId { get; set; }
         public string Token { get; set; }
     }
 }

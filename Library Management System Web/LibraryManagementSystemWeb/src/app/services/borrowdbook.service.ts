@@ -12,7 +12,7 @@ import { BorrowdBookEditModel } from '../models/borrowd-book/borrowdBook-edit-mo
 
 export class BorrowdbookService {
 
-  private appBaseUrl: string = "https://localhost:7090/";
+  private appBaseUrl: string = "https://localhost:7090/api/";
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<BorrowdBookViewModel[]> {

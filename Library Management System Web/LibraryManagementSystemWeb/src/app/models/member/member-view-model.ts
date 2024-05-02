@@ -5,6 +5,7 @@ export class MemberViewModel {
     email: string;
     phoneNumber: string;
     registrationDate: Date;
-    MemberTypeName: string;
+    memberTypeName: string;
+    memberTypeId: number;
     token: string;
 }

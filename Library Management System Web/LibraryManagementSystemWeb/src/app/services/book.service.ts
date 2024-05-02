@@ -12,7 +12,7 @@ import { BookEditModel } from '../models/book/book-edit-model';
 
 export class BookService {
 
-  private appBaseUrl: string = "https://localhost:7090/";
+  private appBaseUrl: string = "https://localhost:7090/api/";
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Observable<BookViewModel[]> {
