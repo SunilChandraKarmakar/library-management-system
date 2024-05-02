@@ -98,6 +98,8 @@ builder.Services.AddTransient<IAuthorManager, AuthorManager>();
 builder.Services.AddTransient<IAuthorRepository, AuthorRepository>();
 builder.Services.AddTransient<IBookManager, BookManager>();
 builder.Services.AddTransient<IBookRepository, BookRepository>();
+builder.Services.AddTransient<IBorrowBookManager, BorrowdBookManager>();
+builder.Services.AddTransient<IBorrowdBookRepository, BorrowdBookRepository>();
 
 var app = builder.Build();
 

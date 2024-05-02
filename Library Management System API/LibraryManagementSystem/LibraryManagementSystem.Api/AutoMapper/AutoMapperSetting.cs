@@ -2,6 +2,7 @@
 using LibraryManagementSystem.Domain.Models;
 using LibraryManagementSystem.Domain.ViewModels.Author;
 using LibraryManagementSystem.Domain.ViewModels.Book;
+using LibraryManagementSystem.Domain.ViewModels.BorrowdBook;
 using LibraryManagementSystem.Domain.ViewModels.Member;
 
 namespace LibraryManagementSystem.Api.AutoMapper
@@ -37,6 +38,17 @@ namespace LibraryManagementSystem.Api.AutoMapper
             CreateMap<MemberCreateModel, Member>();
             CreateMap<Member, MemberEditModel>();
             CreateMap<MemberEditModel, Member>();
+
+            // Borrowd Book
+            CreateMap<BorrowdBook, BorrowdBookViewModel>()
+                .ForMember(d => d.MemberName, s => s.MapFrom(m => m.Member.FirstName + " " + m.Member.LastName))
+                .ForMember(d => d.BookName, s => s.MapFrom(m => m.Book.Title));
+            CreateMap<BorrowdBookViewModel, BorrowdBook>();
+
+            CreateMap<BorrowdBook, BorrowdBookCreateModel>();
+            CreateMap<BorrowdBookCreateModel, BorrowdBook>();
+            CreateMap<BorrowdBook, BorrowdBookEditModel>();
+            CreateMap<BorrowdBookEditModel, BorrowdBook>();
         }
     }
 }

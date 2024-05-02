@@ -13,5 +13,10 @@ namespace LibraryManagementSystem.Manager
         {
             _borrowdBookRepository = borrowdBookRepository;
         }
+
+        public override Task<IEnumerable<BorrowdBook>> GetAll()
+        {
+            return _borrowdBookRepository.GetAll();
+        }
     }
 }

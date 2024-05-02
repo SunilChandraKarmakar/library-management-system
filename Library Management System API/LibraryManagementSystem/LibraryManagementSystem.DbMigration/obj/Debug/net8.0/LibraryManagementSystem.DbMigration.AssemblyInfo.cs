@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LibraryManagementSystem.DbMigration")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9eda684aecb19875e72def83ff70b0b57858a3c3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22b22d74eb2baabd81199b7733f7824030bc7e0f")]
 [assembly: System.Reflection.AssemblyProductAttribute("LibraryManagementSystem.DbMigration")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LibraryManagementSystem.DbMigration")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
