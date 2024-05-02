@@ -2,6 +2,7 @@
 using LibraryManagementSystem.Domain.Models;
 using LibraryManagementSystem.Domain.ViewModels.Author;
 using LibraryManagementSystem.Domain.ViewModels.Book;
+using LibraryManagementSystem.Domain.ViewModels.Member;
 
 namespace LibraryManagementSystem.Api.AutoMapper
 {
@@ -26,6 +27,16 @@ namespace LibraryManagementSystem.Api.AutoMapper
             CreateMap<BookCreateModel, Book>();
             CreateMap<Book, BookEditModel>();
             CreateMap<BookEditModel, Book>();
+
+            // Member
+            CreateMap<Member, MemberViewModel>()
+                .ForMember(d => d.MemberTypeName, s => s.MapFrom(m => m.MemberType.Name));
+            CreateMap<MemberViewModel, Member>();
+
+            CreateMap<Member, MemberCreateModel>();
+            CreateMap<MemberCreateModel, Member>();
+            CreateMap<Member, MemberEditModel>();
+            CreateMap<MemberEditModel, Member>();
         }
     }
 }

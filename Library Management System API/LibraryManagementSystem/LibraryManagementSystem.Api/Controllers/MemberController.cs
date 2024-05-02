@@ -51,5 +51,79 @@ namespace LibraryManagementSystem.Api.Controllers
 
             return Ok(getMemberById);
         }
+
+        [HttpPost]
+        [ProducesResponseType(typeof(MemberCreateModel), (int)HttpStatusCode.Created)]
+        public async Task<ActionResult<MemberCreateModel>> Create([FromBody] MemberCreateModel memberCreateModel)
+        {
+            if (ModelState.IsValid)
+            {               
+                var member = _mapper.Map<Member>(memberCreateModel);
+                member.UserName = memberCreateModel.Email;
+
+                var result = await _userManager.CreateAsync(member, memberCreateModel.Password);
+                var createdMember = _mapper.Map<MemberCreateModel>(member);
+
+                if (result.Succeeded)
+                    return Ok(createdMember);
+                else
+                    return BadRequest(result.Errors.Select(s => s.Description).ToArray());
+            }
+
+            return BadRequest(ModelState);
+        }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(typeof(MemberEditModel), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<MemberEditModel>> Update(string? id, MemberEditModel memberEditModel)
+        {
+            if (id is null || id != memberEditModel.Id)
+                return NotFound(new { ErrorMessage = "Member id was not found! Try again." });
+
+            var existingMember = await _userManager.FindByIdAsync(id);
+
+            if (existingMember is null)
+                return NotFound(new { ErrorMessage = "Member was not found! Try again." });
+
+            if (ModelState.IsValid)
+            {
+                existingMember.FirstName = memberEditModel.FirstName;
+                existingMember.LastName = memberEditModel.LastName;
+                existingMember.Email = memberEditModel.Email;
+                existingMember.PhoneNumber = memberEditModel.PhoneNumber;
+                existingMember.PasswordHash = memberEditModel.Password;
+                existingMember.MemberTypeId = memberEditModel.MemberTypeId;
+                existingMember.RegistrationDate = memberEditModel.RegistrationDate;
+                existingMember.UserName = memberEditModel.Email;
+
+                var result = await _userManager.UpdateAsync(existingMember);
+                var updateMember = _mapper.Map<MemberEditModel>(existingMember);
+
+                if (result.Succeeded)
+                    return Ok(updateMember);
+
+                return BadRequest(result.Errors.Select(s => s.Description).ToArray());
+            }
+
+            return BadRequest(ModelState);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(bool), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<bool>> Delete(string? id)
+        {
+            if (id is null)
+                return NotFound(new { ErrorMessage = "Member id was not found! Try again." });
+
+            var existingMember = await _userManager.FindByIdAsync(id);
+            if (existingMember is null)
+                return NotFound(new { ErrorMessage = "Member was not found! Try again." });
+
+            var isDelete = await _userManager.DeleteAsync(existingMember);
+            if (isDelete.Succeeded)
+                return Ok(true);
+
+            return BadRequest(new { ErrorMessage = "Member was not delete! Try again." });
+        }
     }
 }
