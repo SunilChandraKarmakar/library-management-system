@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using LibraryManagementSystem.Domain.Models;
 using LibraryManagementSystem.Domain.ViewModels.Member;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +12,7 @@ using System.Net;
 namespace LibraryManagementSystem.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class MemberController : ControllerBase
     {

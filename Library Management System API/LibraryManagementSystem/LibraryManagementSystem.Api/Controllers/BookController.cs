@@ -2,12 +2,15 @@
 using LibraryManagementSystem.Domain.Models;
 using LibraryManagementSystem.Domain.ViewModels.Book;
 using LibraryManagementSystem.Manager.Contract;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace LibraryManagementSystem.Api.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class BookController : ControllerBase
     {
